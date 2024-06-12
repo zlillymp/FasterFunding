@@ -3,9 +3,9 @@ import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
 
 const faqs = [
 {
-question: "Why should someone use faster-funding.com?",
+question: "Why should someone use Faster Funding?",
 answer:
-"Faster-funding.com is a valuable resource for small businesses seeking quick and efficient access to financing. By partnering with a wide network of lenders and financing providers, faster-funding.com simplifies the process of finding and applying for the most suitable financing option for your business. Their experienced team of funding experts can guide you through the application process, help you compare offers, and ensure you secure the best terms and rates available. Whether you need a line of credit, an SBA loan, a term loan, equipment financing, or accounts receivable financing, faster-funding.com can connect you with the right lender and expedite the funding process. With their commitment to fast, reliable service and their extensive knowledge of the financing landscape, faster-funding.com is an excellent choice for small businesses looking to grow and succeed.",
+"Faster Funding is a valuable resource for small businesses seeking quick and efficient access to financing. By partnering with a wide network of lenders and financing providers, Faster Funding simplifies the process of finding and applying for the most suitable financing option for your business. Their experienced team of funding experts can guide you through the application process, help you compare offers, and ensure you secure the best terms and rates available. Whether you need a line of credit, an SBA loan, a term loan, equipment financing, or accounts receivable financing, Faster Funding can connect you with the right lender and expedite the funding process. With their commitment to fast, reliable service and their extensive knowledge of the financing landscape, Faster Funding is an excellent choice for small businesses looking to grow and succeed.",
 },
 {
 question: "What are the different types of financing available for small businesses?",

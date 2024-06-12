@@ -1,4 +1,4 @@
-import { CloudArrowUpIcon, LockClosedIcon, ServerIcon, NewspaperIcon, PhoneArrowUpRightIcon, ArrowPathRoundedSquareIcon} from '@heroicons/react/20/solid'
+import { ArrowPathRoundedSquareIcon} from '@heroicons/react/20/solid'
 import { CubeTransparentIcon, CurrencyDollarIcon, BellAlertIcon, CloudArrowDownIcon, PhoneArrowDownLeftIcon, ClipboardDocumentCheckIcon} from '@heroicons/react/24/outline'
 
 export default function Example() {
