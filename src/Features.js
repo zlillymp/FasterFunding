@@ -1,4 +1,4 @@
-import { ArrowPathIcon, CloudArrowUpIcon, LockClosedIcon } from '@heroicons/react/20/solid';
+import { ArrowPathIcon, LockClosedIcon } from '@heroicons/react/20/solid';
 
 const features = [
   {

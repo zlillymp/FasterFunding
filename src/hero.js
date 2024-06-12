@@ -163,7 +163,7 @@ export default function Example() {
                 </li>
               </ul>
               <p className="mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
-If you check these boxes, you should apply.</p>
+If you check these requirements, you should apply. Terms and conditions apply.</p>
   </div>
   <div className="mt-4 px-4 py-10 sm:px-6 lg:px-8 flex justify-start space-x-4">
     <a href="https://faster-funding.com?env=Cqa6KDa7SUVdIdQaxvBVsHXYHvZT6jaP&viewProduct=1&workflowTemplateId=97a3b38c-6529-4d36-ad87-25d198ef413e&destination%5Bmode%5D=bp&destination%5Burl%5D=https://borrower.lendflow.com?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&destination%5Bscript_url%5D=https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1" className="inline-block rounded-md bg-indigo-600 px-4 py-2 text-sm lg:text-lg lg:px-6 lg:py-3 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Apply Now</a>

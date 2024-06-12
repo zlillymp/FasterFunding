@@ -41,7 +41,11 @@ export default function Footer({ onPrivacyClick, onTermsClick }) {
           />
         </div>
         <div className="mt-10 text-center text-xs leading-5 text-gray-400">
-          <p>&copy; 2023 Faster Funding, Inc. All rights reserved.</p>
+          <p>Financial products are made available through Faster Fundings partners</p>
+          <p>Rates, pricing, requirements, and other terms and conditions are subject to change without notice.</p>
+        </div>
+        <div className="mt-10 text-center text-xs leading-5 text-gray-400">
+          <p>&copy; 2024 Faster Funding, Inc. All rights reserved.</p>
           <p>900 Balcones Drive STE 100, Austin, TX 78731 USA</p>
         </div>
       </div>
