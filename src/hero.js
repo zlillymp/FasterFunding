@@ -143,31 +143,40 @@ export default function Example() {
   </p>
   <div className="mt-6 text-gray-900 text-lg">
   <ul className="list-none pl-0 space-y-4">
-                <li className="flex items-center space-x-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                  </svg>
-                  <span>6 months in business</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                  </svg>
-                  <span>550 or higher credit score</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                  </svg>
-                  <span>$14k in monthly revenue</span>
-                </li>
-              </ul>
-              <p className="mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">If you check these requirements, you should apply. Terms and conditions apply.</p>
-  </div>
-  <div className="mt-4 px-4 py-10 sm:px-6 lg:px-8 flex justify-start space-x-4">
-    <a href="https://faster-funding.com?env=Cqa6KDa7SUVdIdQaxvBVsHXYHvZT6jaP&viewProduct=1&workflowTemplateId=97a3b38c-6529-4d36-ad87-25d198ef413e&destination%5Bmode%5D=bp&destination%5Burl%5D=https://borrower.lendflow.com?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&destination%5Bscript_url%5D=https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1" className="inline-block rounded-md bg-indigo-600 px-4 py-2 text-sm lg:text-lg lg:px-6 lg:py-3 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Apply Now</a>
-    <a href="https://borrower.lendflow.com?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1" className="inline-block rounded-md bg-gray-600 px-4 py-2 text-sm lg:text-lg lg:px-6 lg:py-3 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Borrower Portal</a>
-  </div>
+    <li className="flex items-center space-x-2">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+      <span>6 months in business</span>
+    </li>
+    <li className="flex items-center space-x-2">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+      <span>550 or higher credit score</span>
+    </li>
+    <li className="flex items-center space-x-2">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+      <span>$14k in monthly revenue</span>
+    </li>
+  </ul>
+  <p className="mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
+    Meet the requirements? Don't miss your chance—apply now!</p><p className="text-xs text-gray-400">*Terms and conditions apply.</p>
+</div>
+<div className="mt-4 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 items-center">
+  <a href="https://faster-funding.com?env=Cqa6KDa7SUVdIdQaxvBVsHXYHvZT6jaP&viewProduct=1&workflowTemplateId=97a3b38c-6529-4d36-ad87-25d198ef413e&destination%5Bmode%5D=bp&destination%5Burl%5D=https://borrower.lendflow.com?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&destination%5Bscript_url%5D=https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1" className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-indigo-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg" style={{ height: '44px', maxWidth: '185px' }}>
+    Apply Now
+  </a>
+  <a href="https://borrower.lendflow.com?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1" className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-gray-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg" style={{ height: '44px', maxWidth: '185px' }}>
+    Borrower Portal
+  </a>
+</div>
+
+
+
+
 </div>
 
                 <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
