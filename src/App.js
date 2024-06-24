@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import './App.css';
 import Features from './Features';
 import Process from './Process';
@@ -41,6 +42,7 @@ function App() {
         onClose={() => setTermsofServiceOpen(false)}
       />
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
