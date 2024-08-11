@@ -12,6 +12,7 @@ import CTA2 from './CTA2';
 import PrivacyModal from './PrivacyModal';
 import TermsofService from './TermsofService';
 import { loadZohoScript } from './ZohoScript';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
   const [isPrivacyModalOpen, setPrivacyModalOpen] = useState(false);
@@ -22,28 +23,30 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Hero />
-      <Features />
-      <Process />
-      <About />
-      <CTA2 />
-      <Questions />
-      <Footer 
-        onPrivacyClick={() => setPrivacyModalOpen(true)}
-        onTermsClick={() => setTermsofServiceOpen(true)}
-      />
-      <PrivacyModal
-        isOpen={isPrivacyModalOpen}
-        onClose={() => setPrivacyModalOpen(false)}
-      />
-      <TermsofService
-        isOpen={isTermsofServiceOpen}
-        onClose={() => setTermsofServiceOpen(false)}
-      />
-      <Analytics />
-      <SpeedInsights />
-    </div>
+    <Router>
+      <div className="App">
+        <Hero />
+        <Features />
+        <Process />
+        <About />
+        <CTA2 />
+        <Questions />
+        <Footer 
+          onPrivacyClick={() => setPrivacyModalOpen(true)}
+          onTermsClick={() => setTermsofServiceOpen(true)}
+        />
+        <PrivacyModal
+          isOpen={isPrivacyModalOpen}
+          onClose={() => setPrivacyModalOpen(false)}
+        />
+        <TermsofService
+          isOpen={isTermsofServiceOpen}
+          onClose={() => setTermsofServiceOpen(false)}
+        />
+        <Analytics />
+        <SpeedInsights />
+      </div>
+    </Router>
   );
 }
 
