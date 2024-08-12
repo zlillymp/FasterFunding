@@ -10,14 +10,42 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    // Add the Lendflow script
-    const script = document.createElement('script');
-    script.src = "https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&branding=1483&emailBranding=166&target=target-element";
-    script.defer = true;
-    document.body.appendChild(script);
+    const loadScript = () => {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = "https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&branding=1483&emailBranding=166&target=target-id";
+        script.async = true;
+        script.onload = () => {
+          console.log('Lendflow script loaded');
+          resolve();
+        };
+        script.onerror = () => {
+          reject(new Error('Failed to load Lendflow script'));
+        };
+        document.body.appendChild(script);
+      });
+    };
+
+    loadScript()
+      .then(() => {
+        setScriptLoaded(true);
+        // Check if LFBP object is available after a short delay
+        setTimeout(() => {
+          if (window.LFBP) {
+            console.log('LFBP object initialized');
+          } else {
+            console.error('LFBP object not found after script load');
+            setScriptError('LFBP object not initialized');
+          }
+        }, 1000); // Wait for 1 second
+      })
+      .catch((error) => {
+        console.error('Error loading script:', error);
+        setScriptError(error.message);
+      });
 
     return () => {
-      document.body.removeChild(script);
+      // Cleanup if necessary
     };
   }, []);
 
@@ -25,17 +53,6 @@ export default function Example() {
     e.preventDefault();
     console.log('Opening Borrower Portal');
     console.log('LFBP object:', window.LFBP);
-    
-    const width = 800;
-    const height = 600;
-    const left = (window.screen.width - width) / 2;
-    const top = (window.screen.height - height) / 2;
-
-    const newWindow = window.open(
-      'about:blank',
-      'BorrowerPortal',
-      `width=${width},height=${height},left=${left},top=${top}`
-    );
 
     if (window.LFBP && typeof window.LFBP.open === 'function') {
       try {
@@ -43,30 +60,28 @@ export default function Example() {
         console.log('LFBP.open() called successfully');
       } catch (error) {
         console.error('Error calling LFBP.open():', error);
-        if (newWindow) {
-          newWindow.document.write('<h1>Error loading Borrower Portal</h1>');
-        }
+        alert('Error opening Borrower Portal. Please try again later.');
       }
     } else {
       console.error('LFBP object not found or LFBP.open is not a function');
-      if (newWindow) {
-        newWindow.document.write('<h1>Borrower Portal is not available</h1>');
-      }
+      alert('Borrower Portal is not available at the moment. Please try again later.');
     }
   };
+
+
   return (
     <div className="bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
         <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
-          <span className="sr-only">Faster Funding</span>
-        <img
-          className="min-w-12 h-auto" // TailwindCSS class for minimum width and auto height
-          style={{ minWidth: '150px', maxWidth: '200px' }} // Inline style for exact minimum width
-          src={FasterFundingLogo}
-          alt="Faster Funding Logo"
-        />
-      </div>
+            <span className="sr-only">Faster Funding</span>
+            <img
+              className="min-w-12 h-auto" // TailwindCSS class for minimum width and auto height
+              style={{ minWidth: '150px', maxWidth: '200px' }} // Inline style for exact minimum width
+              src={FasterFundingLogo}
+              alt="Faster Funding Logo"
+            />
+          </div>
           <div className="flex lg:hidden">
             <button
               type="button"
@@ -94,13 +109,13 @@ export default function Example() {
           <div className="fixed inset-0 z-50" />
           <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-            <span className="sr-only">Faster Funding</span>
-        <img
-          className="min-w-12 h-auto" // TailwindCSS class for minimum width and auto height
-          style={{ minWidth: '150px' }} // Inline style for exact minimum width
-          src={FasterFundingLogo}
-          alt="Faster Funding Logo"
-        />
+              <span className="sr-only">Faster Funding</span>
+              <img
+                className="min-w-12 h-auto" // TailwindCSS class for minimum width and auto height
+                style={{ minWidth: '150px' }} // Inline style for exact minimum width
+                src={FasterFundingLogo}
+                alt="Faster Funding Logo"
+              />
               <button
                 type="button"
                 className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -177,55 +192,57 @@ export default function Example() {
           <div className="overflow-hidden">
             <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none">
-              <div className="relative w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-  <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-    Where Simplicity Meets Speed in Financing.
-    
-  </h1>
-  <p className="mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
-    Unlock a World of Financing Opportunities with One Click. Simplify your access to capital by connecting instantly with multiple lenders. Explore a variety of options, all tailored to meet your needs swiftly and effortlessly.
-  </p>
-  <div className="mt-6 text-gray-900 text-lg">
-  <ul className="list-none pl-0 space-y-4">
-    <li className="flex items-center space-x-2">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-      </svg>
-      <span>5 months in business</span>
-    </li>
-    <li className="flex items-center space-x-2">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-      </svg>
-      <span>550 or higher credit score</span>
-    </li>
-    <li className="flex items-center space-x-2">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-      </svg>
-      <span>$14k in monthly revenue</span>
-    </li>
-  </ul>
-  <p className="mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
-    Meet the requirements? Don't miss your chance—apply now!</p><p className="text-xs text-gray-400">*Terms and conditions apply.</p>
-</div>
-<div className="mt-4 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 items-center">
-  <a href="https://faster-funding.com?env=Cqa6KDa7SUVdIdQaxvBVsHXYHvZT6jaP&viewProduct=1&workflowTemplateId=97a3b38c-6529-4d36-ad87-25d198ef413e&destination%5Bmode%5D=bp&destination%5Burl%5D=https://borrower.lendflow.com?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&destination%5Bscript_url%5D=https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1" className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-indigo-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg" style={{ height: '44px', maxWidth: '185px' }}>
-    Apply Now
-  </a>
-  <button 
-              onClick={openBorrowerPortal}
-              className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-gray-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg" 
-              style={{ height: '44px', maxWidth: '185px' }}
-            >
-              Borrower Portal
-            </button>
-</div>
+                <div className="relative w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
+                  <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                    Where Simplicity Meets Speed in Financing.
+
+                  </h1>
+                  <p className="mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
+                    Unlock a World of Financing Opportunities with One Click. Simplify your access to capital by connecting instantly with multiple lenders. Explore a variety of options, all tailored to meet your needs swiftly and effortlessly.
+                  </p>
+                  <div className="mt-6 text-gray-900 text-lg">
+                    <ul className="list-none pl-0 space-y-4">
+                      <li className="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <span>5 months in business</span>
+                      </li>
+                      <li className="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <span>550 or higher credit score</span>
+                      </li>
+                      <li className="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <span>$14k in monthly revenue</span>
+                      </li>
+                    </ul>
+                    <p className="mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
+                      Meet the requirements? Don't miss your chance—apply now!</p><p className="text-xs text-gray-400">*Terms and conditions apply.</p>
+                  </div>
+                  <div className="mt-4 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 items-center">
+                    <a href="https://faster-funding.com?env=Cqa6KDa7SUVdIdQaxvBVsHXYHvZT6jaP&viewProduct=1&workflowTemplateId=97a3b38c-6529-4d36-ad87-25d198ef413e&destination%5Bmode%5D=bp&destination%5Burl%5D=https://borrower.lendflow.com?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&destination%5Bscript_url%5D=https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1" className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-indigo-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg" style={{ height: '44px', maxWidth: '185px' }}>
+                      Apply Now
+                    </a>
+                    <button 
+        onClick={openBorrowerPortal}
+        className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-gray-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg" 
+        style={{ height: '44px', maxWidth: '185px' }}
+        disabled={!scriptLoaded || scriptError}
+      >
+        {scriptError ? 'Portal Unavailable' : (scriptLoaded ? 'Borrower Portal' : 'Loading...')}
+      </button>
+      {scriptError && <p className="text-red-500 mt-2">{scriptError}</p>}
+                  </div>
 
 
 
 
-</div>
+                </div>
 
                 <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
                   <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
