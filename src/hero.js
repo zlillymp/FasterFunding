@@ -12,7 +12,7 @@ export default function Example() {
   useEffect(() => {
     // Add the Lendflow script
     const script = document.createElement('script');
-    script.src = "https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&branding=1483&emailBranding=166&target=target-id";
+    script.src = "https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&branding=1483&emailBranding=166&target=target-element";
     script.defer = true;
     document.body.appendChild(script);
 
@@ -23,22 +23,35 @@ export default function Example() {
 
   const openBorrowerPortal = (e) => {
     e.preventDefault();
+    console.log('Opening Borrower Portal');
+    console.log('LFBP object:', window.LFBP);
+    
     const width = 800;
     const height = 600;
     const left = (window.screen.width - width) / 2;
     const top = (window.screen.height - height) / 2;
 
-    window.open(
+    const newWindow = window.open(
       'about:blank',
       'BorrowerPortal',
       `width=${width},height=${height},left=${left},top=${top}`
     );
 
-    // Use the global LFBP object to open the Borrower Portal
-    if (window.LFBP) {
-      window.LFBP.open();
+    if (window.LFBP && typeof window.LFBP.open === 'function') {
+      try {
+        window.LFBP.open();
+        console.log('LFBP.open() called successfully');
+      } catch (error) {
+        console.error('Error calling LFBP.open():', error);
+        if (newWindow) {
+          newWindow.document.write('<h1>Error loading Borrower Portal</h1>');
+        }
+      }
     } else {
-      console.error('LFBP object not found. Make sure the script is loaded correctly.');
+      console.error('LFBP object not found or LFBP.open is not a function');
+      if (newWindow) {
+        newWindow.document.write('<h1>Borrower Portal is not available</h1>');
+      }
     }
   };
   return (
