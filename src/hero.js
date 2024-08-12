@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import FasterFundingLogo from './FasterFundingLogo.svg'
@@ -9,7 +9,38 @@ const navigation = []
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  useEffect(() => {
+    // Add the Lendflow script
+    const script = document.createElement('script');
+    script.src = "https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&branding=1483&emailBranding=166&target=target-id";
+    script.defer = true;
+    document.body.appendChild(script);
 
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  const openBorrowerPortal = (e) => {
+    e.preventDefault();
+    const width = 800;
+    const height = 600;
+    const left = (window.screen.width - width) / 2;
+    const top = (window.screen.height - height) / 2;
+
+    window.open(
+      'about:blank',
+      'BorrowerPortal',
+      `width=${width},height=${height},left=${left},top=${top}`
+    );
+
+    // Use the global LFBP object to open the Borrower Portal
+    if (window.LFBP) {
+      window.LFBP.open();
+    } else {
+      console.error('LFBP object not found. Make sure the script is loaded correctly.');
+    }
+  };
   return (
     <div className="bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
@@ -169,9 +200,13 @@ export default function Example() {
   <a href="https://faster-funding.com?env=Cqa6KDa7SUVdIdQaxvBVsHXYHvZT6jaP&viewProduct=1&workflowTemplateId=97a3b38c-6529-4d36-ad87-25d198ef413e&destination%5Bmode%5D=bp&destination%5Burl%5D=https://borrower.lendflow.com?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&destination%5Bscript_url%5D=https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1" className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-indigo-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg" style={{ height: '44px', maxWidth: '185px' }}>
     Apply Now
   </a>
-  <a href="https://borrower.lendflow.com?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1" className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-gray-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg" style={{ height: '44px', maxWidth: '185px' }}>
-    Borrower Portal
-  </a>
+  <button 
+              onClick={openBorrowerPortal}
+              className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-gray-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg" 
+              style={{ height: '44px', maxWidth: '185px' }}
+            >
+              Borrower Portal
+            </button>
 </div>
 
 
