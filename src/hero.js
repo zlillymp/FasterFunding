@@ -13,7 +13,7 @@ export default function Example() {
     const loadScript = () => {
       return new Promise((resolve, reject) => {
         const script = document.createElement('script');
-        script.src = "https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&branding=1483&emailBranding=166&target=target-id";
+        script.src = "https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&branding=1483&emailBranding=166";
         script.async = true;
         script.onload = () => {
           console.log('Lendflow script loaded');
