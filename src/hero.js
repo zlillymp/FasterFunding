@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import FasterFundingLogo from './FasterFundingLogo.svg'
+import { useNavigate } from 'react-router-dom';
 
 
 const navigation = []
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const navigate = useNavigate();
 
 
   return (
@@ -169,9 +171,13 @@ export default function Example() {
   <a href="https://faster-funding.com?env=Cqa6KDa7SUVdIdQaxvBVsHXYHvZT6jaP&viewProduct=1&workflowTemplateId=97a3b38c-6529-4d36-ad87-25d198ef413e&destination%5Bmode%5D=bp&destination%5Burl%5D=https://borrower.lendflow.com?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1&destination%5Bscript_url%5D=https://borrower.lendflow.com/lfbp.js?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1" className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-indigo-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg" style={{ height: '44px', maxWidth: '185px' }}>
     Apply Now
   </a>
-  <a href="https://borrower.lendflow.com?token=borrower-platform-087ca54534ea43e69bf38795d3cc9ea1" className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-gray-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg" style={{ height: '44px', maxWidth: '185px' }}>
+  <button
+    onClick={() => navigate('/borrower-portal')}
+    className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-gray-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
+    style={{ height: '44px', maxWidth: '185px' }}
+  >
     Borrower Portal
-  </a>
+  </button>
 </div>
 
 

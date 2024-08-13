@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Features from './Features';
 import Process from './Process';
@@ -12,8 +13,9 @@ import CTA2 from './CTA2';
 import PrivacyModal from './PrivacyModal';
 import TermsofService from './TermsofService';
 import { loadZohoScript } from './ZohoScript';
+import BorrowerPortal from './BorrowerPortal';
 
-function App() {
+function MainContent() {
   const [isPrivacyModalOpen, setPrivacyModalOpen] = useState(false);
   const [isTermsofServiceOpen, setTermsofServiceOpen] = useState(false);
 
@@ -41,9 +43,20 @@ function App() {
         isOpen={isTermsofServiceOpen}
         onClose={() => setTermsofServiceOpen(false)}
       />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/borrower-portal" element={<BorrowerPortal />} />
+        <Route path="/" element={<MainContent />} />
+      </Routes>
       <Analytics />
       <SpeedInsights />
-    </div>
+    </Router>
   );
 }
 
